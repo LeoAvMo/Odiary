@@ -8,20 +8,20 @@
 import SwiftUI
 
 struct ReporteView: View {
-    let reportes = [
-            "Has escrito sobre tus gustos musicales, mencionando a artistas como Beyoncé y cómo disfrutas bailar.",
-            "Mencionaste lo mucho que te gusta socializar en fiestas, y cómo disfrutas besar a las personas cercanas a ti.",
-            "Has comentado sobre tu deseo de disfrutar la fiesta al máximo y cómo te gusta animar el ambiente.",
-            "Compartiste cómo las canciones que más te gustan están siempre presentes en tus momentos de diversión.",
-            "Describiste lo mucho que te gusta la espontaneidad y cómo incluso cuando las fiestas terminan, sigues disfrutando el momento."
-        ]
+    let reports = [
+        "You've written about your musical tastes, mentioning artists like Beyoncé and how much you enjoy dancing.",
+        "You mentioned how much you like socializing at parties, and how you enjoy kissing people close to you.",
+        "You've commented on your desire to fully enjoy the party and how you like to keep the energy up.",
+        "You shared how your favorite songs are always present in your moments of fun.",
+        "You described how much you enjoy spontaneity and how, even when parties end, you continue to enjoy the moment."
+    ]
     
     var body: some View {
         
         VStack{
             VStack (alignment: .leading){
                 HStack{Spacer()}
-                Text("Esta semana...")
+                Text("This week...")
                     .font(.largeTitle)
                     .bold()
                 VStack{
@@ -31,11 +31,11 @@ struct ReporteView: View {
                     Spacer()
                     ZStack {
                         VStack(alignment: .leading){
-                            Text("En general..")
+                            Text("In general..")
                                 .font(.title2)
                                 .bold()
                                 .fontWeight(.semibold)
-                            Text("Esta semana has estado escribiendo sobre tus gustos y cómo te ha ido bien en el trabajo.")
+                            Text("This week, you've been writing about your likings and how well things have been going at work.")
                                 .font(.body)
                         }
                     }
