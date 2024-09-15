@@ -12,7 +12,7 @@ struct WritterView: View {
     var body: some View {
         VStack(alignment: .leading){
             Divider()
-            TextField("Hoy me siento..", text: $myDay, axis: .vertical)
+            TextField("Today, I feel...", text: $myDay, axis: .vertical)
         }
         .padding()
     }
