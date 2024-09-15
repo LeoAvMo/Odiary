@@ -84,3 +84,19 @@ struct JournalView_Previews: PreviewProvider {
         return JournalView()
     }
 }
+
+
+let imageUrl = URL(string: imageUrlString) {
+                    AsyncImage(url: imageUrl) { image in
+                        image
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 200, height: 200) // Tamaño del círculo
+                            .background(Color.white)
+                            .clipShape(Circle()) // Forma de círculo
+                            .overlay(Circle().stroke(Color.white, lineWidth: 4)) // Borde blanco
+                            .shadow(radius: 7) // Sombra
+                    } placeholder: {
+                        ProgressView()
+                    }
+                    .padding()
