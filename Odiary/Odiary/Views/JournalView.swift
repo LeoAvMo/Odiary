@@ -1,10 +1,3 @@
-//
-//  JournalView.swift
-//  Odiary
-//
-//  Created by Yolis on 14/09/24.
-//
-
 import SwiftUI
 
 struct JournalView: View {
@@ -16,17 +9,18 @@ struct JournalView: View {
                 .fontWeight(.black)
             GeometryReader(content: { geometry in
                 let size=geometry.size
+                
                 ScrollView(.horizontal){
-                    
                     HStack(spacing: 5){
                         ForEach(EntryData.getAllEntries){
                             entry in
                             GeometryReader(content: {
                                 geometryContent in
-                                AsyncImage(url: entry.imageURL){
+                                Image(systemName: "music.note.house")
+                                /*AsyncImage(url: entry.imageURL){
                                     image in
                                     image.image?.resizable()
-                                }
+                                } *///esto es lo que no está cargando
                                 .clipShape(.rect(cornerRadius: 15))
                                 .overlay{
                                     TitleAndSubtitleView(entry)
@@ -34,25 +28,29 @@ struct JournalView: View {
                                 
                             })
                             .frame(width: size.width - 60)
-                            .scrollTransition(transition: .interactive, axis: .horizontal){
-                                view, phase in
-                                view.scaleEffect(phase.isIdentity ? 1 : 0.95)
+                            .scrollTransition(.interactive,
+                                    axis: .horizontal){
+                                        view, phase in
+                                        view
+                                            .scaleEffect(phase
+                                                .isIdentity ? 1 : 0.95)
                             }
                         }
                     }
                     .padding(.horizontal, 30)
-                        .scrollTargetLayout()
+                    .scrollTargetLayout()
                 }
-                .scrollTargetBehavior(.viewAigned)
+                .scrollTargetBehavior(.viewAligned)
                 .scrollIndicators(.hidden)
             })
+            .frame(height: 500)
+            .padding(.horizontal, 15)
             
         }
-        .frame(height: 500)
-        .padding(.horizontal, 15)
     }
+                     
     @ViewBuilder
-    func TitleAndSubtitleView(_ city: City) -> some View {
+    func TitleAndSubtitleView(_ entry: Entry) -> some View {
         ZStack(alignment: .bottomLeading, content: {
             LinearGradient(colors: [
                 .clear,
@@ -76,27 +74,8 @@ struct JournalView: View {
         })
         .clipShape(.rect(cornerRadius:15))
     }
-
 }
 
-struct JournalView_Previews: PreviewProvider {
-    static var previews: some View {
-        return JournalView()
-    }
+#Preview {
+    JournalView()
 }
-
-
-let imageUrl = URL(string: imageUrlString) {
-                    AsyncImage(url: imageUrl) { image in
-                        image
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: 200, height: 200) // Tamaño del círculo
-                            .background(Color.white)
-                            .clipShape(Circle()) // Forma de círculo
-                            .overlay(Circle().stroke(Color.white, lineWidth: 4)) // Borde blanco
-                            .shadow(radius: 7) // Sombra
-                    } placeholder: {
-                        ProgressView()
-                    }
-                    .padding()
