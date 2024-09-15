@@ -14,7 +14,7 @@ struct MusicView: View {
                 Spacer()
             }
             VStack{
-                Text("Te recomeindo")
+                Text("I recommend you")
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .padding(.horizontal)
@@ -49,14 +49,12 @@ struct MusicView: View {
                 .padding(.top, 10)
             }
             VStack(alignment: .leading) {
-                Text("Por...")
+                Text("Because...")
                     .font(.title3)
                     .fontWeight(.bold)
                     .padding(.bottom, 5)
                 
-                Text("""
-                    Commodo duis excepteur ut consequat commodo reprehenderit voluptate labore cupidatat occaecat eu dolore nulla qui veniam tempor ipsum culpa et consectetur et magna in pariatur duis ea eu qui esse veniam adipisicing voluptate
-                    """)
+                Text("I'd recommend 'Yellow' by Coldplay because its uplifting, warm energy matches your current feelings of happiness and accomplishment. The lyrics, 'Look at the stars, look how they shine for you,' celebrate positivity and self-assurance, making it a perfect soundtrack for embracing your confidence and joy.")
                 .font(.body)
                 .foregroundColor(.black)
             }
