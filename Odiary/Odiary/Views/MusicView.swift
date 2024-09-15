@@ -73,8 +73,6 @@ struct MusicView: View {
     }
 }
 
-struct MusicView_Previews: PreviewProvider {
-    static var previews: some View {
-        MusicView()
-    }
+#Preview {
+    MusicView()
 }
