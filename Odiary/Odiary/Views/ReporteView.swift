@@ -8,7 +8,13 @@
 import SwiftUI
 
 struct ReporteView: View {
-    let reportes = ["1800-hot-n-fun oh my god dj play my fav song, play something by beyonce", "I like to dance when i party, i like to kiss everbody, where the heck is saki", "im trynna break it done yo baby turn up the party", "1800-hot-n-fun thats my number hit my line, hear my ringtone everytime", "im not tryna leave until the kick us to the road, but even if they do its cool i got an addresss in my phone"] // Ejemplo de lista
+    let reportes = [
+            "Has escrito sobre tus gustos musicales, mencionando a artistas como Beyoncé y cómo disfrutas bailar.",
+            "Mencionaste lo mucho que te gusta socializar en fiestas, y cómo disfrutas besar a las personas cercanas a ti.",
+            "Has comentado sobre tu deseo de disfrutar la fiesta al máximo y cómo te gusta animar el ambiente.",
+            "Compartiste cómo las canciones que más te gustan están siempre presentes en tus momentos de diversión.",
+            "Describiste lo mucho que te gusta la espontaneidad y cómo incluso cuando las fiestas terminan, sigues disfrutando el momento."
+        ]
     
     var body: some View {
         
@@ -24,18 +30,18 @@ struct ReporteView: View {
                 HStack{
                     Spacer()
                     ZStack {
-                        VStack{
+                        VStack(alignment: .leading){
                             Text("En general..")
-                                .font(.title)
+                                .font(.title2)
+                                .bold()
                                 .fontWeight(.semibold)
-                            Text("Este es un resumen general de los reportes.")
+                            Text("Esta semana has estado escribiendo sobre tus gustos y cómo te ha ido bien en el trabajo.")
                                 .font(.body)
                         }
                     }
                     .padding()
                     .background(Color(red: 129/255, green: 194/255, blue: 139/255))
                     .cornerRadius(20)
-                    .shadow(color: Color.black.opacity(0.3), radius: 1, x: -5, y: 5)
                     Spacer()
                 }
                 .padding()
@@ -78,6 +84,7 @@ struct ReporteView: View {
             .shadow(color: Color.black.opacity(0.3), radius: 1, x: -5, y: 5)
         }
 }
+
 
 #Preview {
     ReporteView()
