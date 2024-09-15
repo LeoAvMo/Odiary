@@ -1,32 +1,86 @@
 //
-//  Entry.swift
+//  JournalView.swift
 //  Odiary
 //
 //  Created by Yolis on 14/09/24.
 //
 
-import Foundation
+import SwiftUI
 
-struct Entry: Identifiable, Hashable {
-    let id: UUID
-    let title: String
-    let subtitle: String
-    let imageURL: URL
+struct JournalView: View {
     
-    init(title:String, subtitle: String, imageURL: URL){
-        self.id = UUID()
-        self.title = title
-        self.subtitle = subtitle
-        self.imageURL = imageURL
+    var body: some View {
+        VStack (spacing: 15){
+            Text("Journal Entries")
+                .font(.title)
+                .fontWeight(.black)
+            GeometryReader(content: { geometry in
+                let size=geometry.size
+                ScrollView(.horizontal){
+                    
+                    HStack(spacing: 5){
+                        ForEach(EntryData.getAllEntries){
+                            entry in
+                            GeometryReader(content: {
+                                geometryContent in
+                                AsyncImage(url: entry.imageURL){
+                                    image in
+                                    image.image?.resizable()
+                                }
+                                .clipShape(.rect(cornerRadius: 15))
+                                .overlay{
+                                    TitleAndSubtitleView(entry)
+                                }
+                                
+                            })
+                            .frame(width: size.width - 60)
+                            .scrollTransition(transition: .interactive, axis: .horizontal){
+                                view, phase in
+                                view.scaleEffect(phase.isIdentity ? 1 : 0.95)
+                            }
+                        }
+                    }
+                    .padding(.horizontal, 30)
+                        .scrollTargetLayout()
+                }
+                .scrollTargetBehavior(.viewAigned)
+                .scrollIndicators(.hidden)
+            })
+            
+        }
+        .frame(height: 500)
+        .padding(.horizontal, 15)
     }
+    @ViewBuilder
+    func TitleAndSubtitleView(_ city: City) -> some View {
+        ZStack(alignment: .bottomLeading, content: {
+            LinearGradient(colors: [
+                .clear,
+                .clear,
+                .clear,
+                .clear,
+                .black.opacity(0.1),
+                .black.opacity(0.5),
+                .black
+            ], startPoint: .top, endPoint: .bottom)
+            VStack(alignment: .leading, spacing: 4, content: {
+                Text(entry.title)
+                    .font(.title2)
+                    .fontWeight(.black)
+                    .foregroundStyle(.white.opacity(0.8))
+                Text(entry.subtitle)
+                    .font(.callout)
+                    .foregroundStyle(.white.opacity(0.8))
+            })
+            .padding(20)
+        })
+        .clipShape(.rect(cornerRadius:15))
+    }
+
 }
 
-struct EntryData {
-    static let getAllEntries: [Entry] = [
-        .init(title: "Imagen1", subtitle: "Descripción", imageURL: URL(string: "https://pixabay.com/photos/road-mountains-glacier-nature-8284023/")!),
-        .init(title: "Imagen2", subtitle: "Descripción", imageURL: URL(string: "https://pixabay.com/photos/music-hip-hop-night-concer-singer-7974197/")!),
-        .init(title: "Imagen3", subtitle: "Descripción", imageURL: URL(string: "https://pixabay.com/photos/bird-ornithology-duck-species-8319973/")!),
-        .init(title: "Imagen4", subtitle: "Descripción", imageURL: URL(string: "https://pixabay.com/photos/ferris-wheel-theme-park-7698475/")!),
-        .init(title: "Imagen5", subtitle: "Descripción", imageURL: URL(string: "https://pixabay.com/photos/cat-animal-mammal-feline-pet-8275147/")!)
-    ]
+struct JournalView_Previews: PreviewProvider {
+    static var previews: some View {
+        return JournalView()
+    }
 }
