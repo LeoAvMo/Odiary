@@ -78,3 +78,7 @@ struct ReporteView: View {
             .shadow(color: Color.black.opacity(0.3), radius: 1, x: -5, y: 5)
         }
 }
+
+#Preview {
+    ReporteView()
+}
