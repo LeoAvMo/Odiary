@@ -11,17 +11,17 @@ struct FeedView: View {
     @State private var expandedIndex: Int? = nil
     
     let items = [
-        ("Practica la gratitud", "Agradece diariamente por lo que tienes."),
-        ("Haz ejercicio regularmente", "Mejora el ánimo y reduce el estrés."),
-        ("Medita o respira profundamente", "Ayuda a reducir la ansiedad y mejora el enfoque."),
-        ("Mantén una rutina", "La estructura diaria puede generar estabilidad emocional."),
-        ("Duerme lo suficiente", "Prioriza un buen descanso para restaurar el cuerpo y la mente.")
+        ("Practice gratitude", "Be grateful daily for what you have."),
+        ("Exercise regularly", "Improve mood and reduce stress."),
+        ("Meditate or breathe deeply", "Helps reduce anxiety and improve focus."),
+        ("Keep a routine", "Daily structure can generate emotional stability."),
+        ("Get enough sleep", "Prioritize a good rest to restore body and mind.")
     ]
     
     var body: some View {
         VStack(alignment: .leading) {
             HStack{Spacer()}
-            Text("Me gustaría recomendarte...")
+            Text("I'd like to recommend you...")
                 .font(.title)
                 .bold()
             ForEach(items.indices, id: \.self) { index in
